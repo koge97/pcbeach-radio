@@ -9,6 +9,7 @@ import RRSS from '@/components/RRSS';
 import Contacto from '@/components/Contacto';
 import Footer from '@/components/Footer';
 import Reproductor from '@/components/Reproductor';
+import Empresas from '@/components/Empresas';
 
 export default function Home() {
     
@@ -40,8 +41,9 @@ export default function Home() {
             <NavBar />
             <main className='transition-all'>
                 <section id="inicio"></section>
-                <Nosotros />
+                <Empresas />
                 <RRSS />
+                <Nosotros />
                 <Contacto />
             </main>
             <Footer />
