@@ -1,8 +1,4 @@
-
-
 import { ChangeEvent, useEffect, useState } from 'react';
-import InterfaceBloque from '../../interfaces/InterfaceBloque';
-
 import { BsPlayFill, BsPauseFill } from 'react-icons/bs';
 import { ImSpinner2 } from 'react-icons/im';
 import { GoMute, GoUnmute } from 'react-icons/go';

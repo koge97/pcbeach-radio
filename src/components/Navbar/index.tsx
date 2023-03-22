@@ -53,7 +53,7 @@ function NavBar() {
                             </button>
                             <a href="#inicio" className="flex space-x-3">
                                 <p className="my-auto font-offroad italic text-4xl sm:text-4xl " >
-                                    PCbeach.cl
+                                    PCbeach.cl Radio - Centro Tecnológico
                                 </p>
                             </a>
                         </div>

@@ -1,6 +1,11 @@
+import { url } from "inspector";
 import { useEffect, useState } from "react";
 
-function Instagram() {
+interface Props {
+    url: string;
+}
+
+function Instagram(props: Props) {
 
     const minWidth = 30;
     const maxWidth = 500;
@@ -39,8 +44,8 @@ function Instagram() {
         <iframe
             title="Instagram"
             className="rounded-sm shadow-xl overflow-hidden mx-auto my-4"
-            style={{height: 525, width: width}}
-            src="https://www.instagram.com/pcbeach_centro_tecnologico/embed"
+            style={{height: 535, width: width}}
+            src={props.url}
             width={width} 
             height={height}
             scrolling="no"
