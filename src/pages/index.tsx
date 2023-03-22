@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 import NavBar from '@/components/Navbar';
 import Nosotros from '@/components/Nosotros';
-import Facebook from '@/components/Facebook';
+import RRSS from '@/components/RRSS';
 import Contacto from '@/components/Contacto';
 import Footer from '@/components/Footer';
 import Reproductor from '@/components/Reproductor';
@@ -16,11 +16,11 @@ export default function Home() {
     return (
         <>
         <Head>
-            <title>Radio Golondrina</title>
+            <title>PCBeach.cl - Radio, Centro Tecnologico y más</title>
             <meta charSet="utf-8" />
             <meta
                 name="description"
-                content="Radio Golondrina Paine 106.1 FM, Te Acompaña!"
+                content="PCBeach, una empresa de servicios informáticos y tecnológicos, con más de 10 años de experiencia en el rubro. "
             />
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
             {/* <meta name="theme-color" content="#0f172a" /> */}
@@ -41,7 +41,7 @@ export default function Home() {
             <main className='transition-all'>
                 <section id="inicio"></section>
                 <Nosotros />
-                <Facebook />
+                <RRSS />
                 <Contacto />
             </main>
             <Footer />

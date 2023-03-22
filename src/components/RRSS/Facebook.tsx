@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Frame(){
+function Facebook(){
 
     const minWidth = 30;
     const maxWidth = 500;
@@ -40,7 +40,7 @@ function Frame(){
                 title="Facebook"
                 className="rounded-sm shadow-xl overflow-hidden mx-auto my-4"
                 style={{height: height, width: width}}
-                src={`https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FRadio-Golondrina-Paine-1475870435852133%2F&tabs=timeline&width=${width}&height=${height}&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=200574404670312`} 
+                src={`https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fweb.facebook.com%2Fprofile.php%3Fid%3D100061811122209&tabs=timeline&width=${width}&height=${height}&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=200574404670312`} 
                 width={width} 
                 height={height}
                 scrolling="no" 
@@ -48,7 +48,8 @@ function Frame(){
             >
             
         </iframe>
+        
     );
 }
 
-export default Frame;
+export default Facebook;

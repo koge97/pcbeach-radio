@@ -1,8 +1,7 @@
 const items = {
     "Inicio": "#inicio",
     "Nosotros": "#nosotros",
-    "Programación": "#programas",
-    "Facebook": "#facebook",
+    "Redes Sociales": "#rrss",
     "Contacto": "#contacto"
 }
 
