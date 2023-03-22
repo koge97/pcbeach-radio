@@ -10,8 +10,6 @@ import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TfiClose } from "react-icons/tfi";
 
-import Logo from "../Logo";
-
 function NavBar() {
     const [darkTheme, setDarkTheme] = useState<boolean>(false);
     const [isMobile, setIsMobile ] = useState<boolean>(false);
@@ -54,9 +52,8 @@ function NavBar() {
                                 <TfiClose className={`h-6 lg:h-8 w-auto ${open ? 'swap-off' : 'swap-on' }`} />
                             </button>
                             <a href="#inicio" className="flex space-x-3">
-                                <Logo className="h-6 sm:h-8 w-auto fill-black dark:fill-white" />
-                                <p className="my-auto font-pacifico text-sm sm:text-xl " >
-                                    Radio Golondrina
+                                <p className="my-auto font-offroad italic text-4xl sm:text-4xl " >
+                                    PCbeach.cl
                                 </p>
                             </a>
                         </div>

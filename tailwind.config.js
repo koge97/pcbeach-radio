@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        pacifico: ["Pacifico", "cursive"],
+        offroad: ["Offroad-NormalBlack", "cursive"],
       },
     },
   },

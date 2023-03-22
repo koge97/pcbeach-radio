@@ -2,28 +2,16 @@ import Head from 'next/head';
 import { useState, useEffect } from "react";
 
 
-import Programacion from '@/utils/programacion';
 
 import NavBar from '@/components/Navbar';
 import Nosotros from '@/components/Nosotros';
-import Programas from '@/components/Programas';
 import Facebook from '@/components/Facebook';
 import Contacto from '@/components/Contacto';
 import Footer from '@/components/Footer';
 import Reproductor from '@/components/Reproductor';
 
 export default function Home() {
-    const [programaActual,setProgramaActual] = useState(Programacion.ProgramaActual());
-    const programaDefault = Programacion.GetProgramaDefault();
-    const horario = Programacion.GetHorario();
-  
-    useEffect(() => {
-      const intervaloRecarga = setTimeout(() => {
-        console.log("Recargando...");
-        setProgramaActual(Programacion.ProgramaActual());
-      }, 60000 * (programaActual.minutosRestantes + 1));
-      return () => clearTimeout(intervaloRecarga);
-    }, [programaActual]);
+    
 
     return (
         <>
@@ -53,12 +41,11 @@ export default function Home() {
             <main className='transition-all'>
                 <section id="inicio"></section>
                 <Nosotros />
-                <Programas horario={horario} />
                 <Facebook />
                 <Contacto />
             </main>
             <Footer />
-            <Reproductor programaActual={programaActual} programaDefault={programaDefault} />
+            <Reproductor/>
         </div>
 
         </>
