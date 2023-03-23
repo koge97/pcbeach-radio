@@ -29,11 +29,11 @@ export default function Home() {
             <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
             <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
             <link rel="manifest" href="/site.webmanifest" />
-            <link rel="mask-icon" href="/maskicon.svg" color="#60a5fa" />
-            <meta name="msapplication-TileColor" content="#60a5fa" />
+            <link rel="mask-icon" href="/maskicon.svg" color="#52e8f9" />
+            <meta name="msapplication-TileColor" content="#52e8f9" />
             
-            <meta name="theme-color" media="(prefers-color-scheme: light)" content="#60a5fa" />
-            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1D4ED8" />
+            <meta name="theme-color" media="(prefers-color-scheme: light)" content="#52e8f9" />
+            <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#52e8f9" />
         </Head>
 
         <div className='dark:text-white text-slate-800'>
