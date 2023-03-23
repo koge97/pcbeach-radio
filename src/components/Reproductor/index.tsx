@@ -14,6 +14,24 @@ if(typeof window !== 'undefined') {
     audio = new Audio(url);
 }
 
+function setMediaSessionMetadata(titulo: string) {
+    if('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: 'PCBeach Radio 92.3FM',
+            artist: titulo,
+            artwork: [
+                { src: '/artwork-1000x1000.png', sizes: '1000x1000', type: 'image/png' },
+                { src: '/artwork-512x512.png', sizes: '512x512', type: 'image/png' },
+                { src: '/artwork-384x384.png', sizes: '384x384', type: 'image/png' },
+                { src: '/artwork-256x256.png', sizes: '256x256', type: 'image/png' },
+                { src: '/artwork-192x192.png', sizes: '192x192', type: 'image/png' },
+                { src: '/artwork-128x128.png', sizes: '128x128', type: 'image/png' },
+                { src: '/artwork-96x96.png', sizes: '96x96', type: 'image/png' },
+            ]
+        });
+    }
+}
+
 function Reproductor() {
     const [paused, setPaused] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -29,6 +47,25 @@ function Reproductor() {
         setTitulo(titulo);
     }
 
+    function setMediaSessionHandlers() {
+        if('mediaSession' in navigator) {
+            navigator.mediaSession.setActionHandler("play", () => {
+                startPlaying();
+            });
+            navigator.mediaSession.setActionHandler("pause", () => {
+                stopPlaying();
+            });
+            navigator.mediaSession.setActionHandler("stop", () => {
+                stopPlaying();
+            });
+        }
+    }
+
+    function setMediaSessionAPI() {
+        setMediaSessionMetadata(titulo);
+        setMediaSessionHandlers();
+    }
+
     useEffect(() => {
         getTitulo();
         
@@ -41,39 +78,8 @@ function Reproductor() {
 
 
     useEffect(() => {
-        setMediaSessionAPI();
+        setMediaSessionMetadata(titulo);
     }, [titulo]);
-
-
-
-    function setMediaSessionAPI() {
-        if('mediaSession' in navigator) {
-            navigator.mediaSession.metadata = new MediaMetadata({
-                title: 'PCBeach Radio 92.3FM',
-                artist: titulo,
-                artwork: [
-                    { src: '/artwork-1000x1000.png', sizes: '1000x1000', type: 'image/png' },
-                    { src: '/artwork-512x512.png', sizes: '512x512', type: 'image/png' },
-                    { src: '/artwork-384x384.png', sizes: '384x384', type: 'image/png' },
-                    { src: '/artwork-256x256.png', sizes: '256x256', type: 'image/png' },
-                    { src: '/artwork-192x192.png', sizes: '192x192', type: 'image/png' },
-                    { src: '/artwork-128x128.png', sizes: '128x128', type: 'image/png' },
-                    { src: '/artwork-96x96.png', sizes: '96x96', type: 'image/png' },
-                ]
-            });
-
-            navigator.mediaSession.setActionHandler("play", () => {
-                startPlaying();
-            });
-            navigator.mediaSession.setActionHandler("pause", () => {
-                stopPlaying();
-            });
-            navigator.mediaSession.setActionHandler("stop", () => {
-                stopPlaying();
-            });
-
-        }
-    }
 
     async function startPlaying() {
         setLoading(true);
