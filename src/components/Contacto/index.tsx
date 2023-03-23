@@ -30,7 +30,7 @@ const contactos = [
     {
         icono: BsFillTelephoneFill,
         iconoBackground: "bg-blue-600",
-        titulo: "Teléfono Fijo",
+        titulo: "Teléfono",
         descripcion: "Llámanos a nuestro teléfono",
         direccion: "+56 9 7400 7400",
         href: "tel:+56974007400",

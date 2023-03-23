@@ -7,7 +7,6 @@ import NavBar from '@/components/Navbar';
 import Nosotros from '@/components/Nosotros';
 import RRSS from '@/components/RRSS';
 import Contacto from '@/components/Contacto';
-import Footer from '@/components/Footer';
 import Reproductor from '@/components/Reproductor';
 import Empresas from '@/components/Empresas';
 
@@ -46,7 +45,6 @@ export default function Home() {
                 <Nosotros />
                 <Contacto />
             </main>
-            <Footer />
             <Reproductor/>
         </div>
 

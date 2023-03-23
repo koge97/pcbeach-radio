@@ -1,8 +1,9 @@
 const items = {
     "Inicio": "#inicio",
-    "Nosotros": "#nosotros",
     "Redes Sociales": "#rrss",
-    "Contacto": "#contacto"
+    "Nosotros": "#nosotros",
+    "Contacto": "#contacto",
+    "Sucursal Virtual Sheriff": "https://sistema.pcbeach.cl/"
 }
 
 export default function NavBarItems() {
