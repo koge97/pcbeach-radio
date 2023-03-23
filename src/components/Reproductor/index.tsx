@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { BsPlayFill, BsPauseFill } from 'react-icons/bs';
+import { FaPlay, FaPause } from 'react-icons/fa';
 import { ImSpinner2 } from 'react-icons/im';
 import { GoMute, GoUnmute } from 'react-icons/go';
 
@@ -171,13 +171,13 @@ function Reproductor() {
                                 <ImSpinner2 className='h-8 w-8 animate-spin' />
                             :
                             paused ? 
-                                <BsPlayFill className='h-12 w-12' /> 
+                                <FaPlay className='h-12 w-12' /> 
                             : 
-                                <BsPauseFill className='h-12 w-12' />
+                                <FaPause className='h-12 w-12' />
                             }
                         </button>
                         <div className='flex flex-row w-72 items-center'>
-                            <button aria-label='Silenciar o activar sonido.' className={`btn btn-primary border-white/30 hover:border-white/60 min-h-8 w-8 h-8 p-0 text-center justify-center items-center bg-gradient-to-tr from-cyan-400 to-cyan-600 text-white rounded-md shadow-xl`} onClick={toggleMute}>
+                            <button aria-label='Silenciar o activar sonido.' className={`flex-none btn btn-primary border-white/30 hover:border-white/60 min-h-8 w-8 h-8 p-0 text-center justify-center items-center bg-gradient-to-tr from-cyan-400 to-cyan-600 text-white rounded-md shadow-xl`} onClick={toggleMute}>
                                 {
                                     volume === 0 ?
                                         <GoMute className='mx-auto' />
@@ -185,12 +185,12 @@ function Reproductor() {
                                         <GoUnmute className='mx-auto' />
                                 }
                             </button>
-                            <div className="relative flex flex-col w-full h-3 rounded-full bg-white mx-5">
+                            <div className="grow relative flex flex-col h-3 rounded-full bg-white mx-5">
                                 <span className={`absolute top-0 progress shadow-xl w-full h-3 bg-gradient-to-r from-cyan-400 to-cyan-600 `} style={{width: `${volume * 100}%`}} ></span>
-                                <span className="absolute top-0 bg-white h-6 w-6 -ml-4 -mt-1.5 shadow rounded-full border border-slate-800/20" style={{left: `${volume * 100}%` }}></span>
+                                <span className="absolute top-0 bg-white h-6 w-6 -ml-3 -mt-1.5 shadow rounded-full border border-slate-800/20" style={{left: `${volume * 100}%` }}></span>
                                 <input aria-label='Volumen.' type="range" min="0" max="100" value={volume * 100} className="absolute cursor-pointer top-0 opacity-0  progress w-full h-5" id="volume" onChange={changeSlider} />
                             </div>
-                            <div className='w-8'>
+                            <div className='flex-none w-8 h-8 border opacity-0'>
 
                             </div>
                         </div>
