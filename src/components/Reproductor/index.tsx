@@ -6,7 +6,7 @@ import { GoMute, GoUnmute } from 'react-icons/go';
 
 const url = 'https://vtr.pcbeach.cl:8443/streaming';
 
-const url_metadata = "http://vtr.pcbeach.cl:8000/status-json.xsl";
+const url_metadata = "https://vtr.pcbeach.cl:8443/status-json.xsl";
 
 let audio: HTMLAudioElement;
 
