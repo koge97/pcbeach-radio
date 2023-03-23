@@ -11,6 +11,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'pcbeach-color': "#52e8f9",
+      },
       fontFamily: {
         offroad: ["Offroad-NormalBlack", "cursive"],
       },

@@ -14,7 +14,7 @@ const descripciones = [
     {
         titulo: 'PCBeach Radio',
         subtitulo: 'PCBeach Radio es una emisora de radio en el dial 92.3FM que te transporta a los mejores momentos de tu vida con la música más icónica de los 80 y 90, además de los hits actuales más populares. Somos la opción perfecta para aquellos que buscan un sonido nostálgico pero moderno. Únete a nosotros y disfruta de la mejor selección musical desde la playa a la comodidad de tu hogar.',
-        atributo: 'text-transparent bg-clip-text bg-gradient-to-bl from-cyan-600 to to-sky-200'
+        atributo: 'text-transparent bg-clip-text bg-gradient-to-bl from-pcbeach-color to to-cyan-600'
     },
 ];
 

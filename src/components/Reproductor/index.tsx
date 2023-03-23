@@ -161,8 +161,8 @@ function Reproductor() {
             <div className='fixed bottom-0 w-full p-2 h-52 lg:h-32  shadow-sm bg-zinc-100/80 dark:bg-black/80 backdrop-blur border-t border-slate-300/40 dark:border-slate-500/30'>
                 <div className='h-full flex flex-col justify-center items-center space-y-2 lg:flex-row lg:justify-evenly lg:max-w-5xl lg:mx-auto lg:space-y-0'>
                     <div className='flex flex-col items-center space-y-2'>
-                        <h3 className='text-xl font-bold'>Ahora suena en PCBeach Radio</h3>
-                        <h4 className={`text-lg font-bold `}>{titulo}</h4>
+                        <h3 className='text-xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to to-pcbeach-color'>Ahora suena en PCBeach Radio</h3>
+                        <h4 className={`text-lg font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to to-pink-700`}>{titulo}</h4>
                     </div>
                     <div className='flex flex-col items-center space-y-2'>
                         <button aria-label='Iniciar o detener la reproducción.' className={`btn border-white/30 hover:border-white/60 rounded-full w-12 h-12 flex justify-center text-white text-center items-center shadow-xl bg-gradient-to-tr from-cyan-400 to-cyan-600`} onClick={toggleAudio} >
