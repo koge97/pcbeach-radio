@@ -17,9 +17,9 @@
             "purpose": "maskable"
         },
         {
-            "src": "/maskicon.svg",
+            "src": "/maskicon.png",
             "sizes": "any",
-            "type": "image/svg+xml",
+            "type": "image/png",
             "purpose": "maskable"
         }
     ],
