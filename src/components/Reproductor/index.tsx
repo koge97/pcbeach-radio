@@ -85,12 +85,31 @@ function Reproductor() {
         setMediaSessionMetadata(titulo);
     }, [titulo]);
 
+
+    async function playAudioRef() {
+
+        if(!audioRef.current) return;
+
+        const tries = 10;
+
+        for(let i = 0; i < tries; i++) {
+            try {
+                await audioRef.current.play();
+                break;
+            } catch(error) {
+                console.log(`Error al reproducir audio. Intento ${i + 1} de ${tries}`);
+                console.log(error);
+            }
+        }
+    }
+
     async function startPlaying() {
         if(!audioRef.current) return;
 
         setLoading(true);
 
-        await audioRef.current.play();
+        //await audioRef.current.play();
+        playAudioRef();
 
         setMediaSessionAPI();
 
