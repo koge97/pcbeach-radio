@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { ImSpinner2 } from 'react-icons/im';
 import { GoMute, GoUnmute } from 'react-icons/go';
@@ -33,10 +33,14 @@ function setMediaSessionMetadata(titulo: string) {
 }
 
 function Reproductor() {
-    const [paused, setPaused] = useState(true);
+    const audioRef = useRef<HTMLAudioElement>(null);
+
     const [loading, setLoading] = useState(false);
+    const [paused, setPaused] = useState(true);
+
     const [volume, setVolume] = useState(0.5); 
     const [prevVolume, setPrevVolume] = useState(0.5);
+
     const [titulo, setTitulo] = useState("");
 
     async function getTitulo() {
@@ -53,10 +57,10 @@ function Reproductor() {
                 startPlaying();
             });
             navigator.mediaSession.setActionHandler("pause", () => {
-                stopPlaying();
+                pause();
             });
             navigator.mediaSession.setActionHandler("stop", () => {
-                stopPlaying();
+                stopAndSetNewAudio();
             });
         }
     }
@@ -82,80 +86,86 @@ function Reproductor() {
     }, [titulo]);
 
     async function startPlaying() {
+        if(!audioRef.current) return;
+
         setLoading(true);
-        try {
-            await audio.play();
-        } catch (error: any) {
-            if(error.code === 20) {
-                console.log('El usuario pauso la reproduccion antes de que se cargara el audio.');
-                return;
-            }
-            console.log({error});
-        }
-        changeVolume(volume);
+
+        await audioRef.current.play();
+
         setMediaSessionAPI();
+
         setLoading(false);
         setPaused(false);
     }
 
-    function stopPlaying() {
-        audio.pause();
-        audio = new Audio(url);
-        setPaused(true);
+    function pause() {
+        if(!audioRef.current) return;
+
+        audioRef.current.pause();
+
         setLoading(false);
+        setPaused(true);
     }
     
-    async function toggleAudio() {
-        if(loading) { // el usuario esta spammeando el boton
-            stopPlaying();
-            startPlaying();
-            return;
+    function stopAndSetNewAudio() {
+        if(!audioRef.current) return;
+
+        pause();
+
+        audioRef.current.src = url;
+        audioRef.current.currentTime = 0;
+
+        setPaused(true);
+    }
+
+    function onClickPlayButton() {
+        console.log({loading, paused});
+        console.log(audioRef.current);
+        if(!audioRef.current) return;
+
+        if(loading) {
+            stopAndSetNewAudio();
         }
-        
-        if (paused) {
+
+        if(paused) {
             startPlaying();
         } else {
-            stopPlaying();
+            stopAndSetNewAudio();
         }
     }
 
-    function changeVolume(volume: number) {
-        audio.volume = volume;
-        setVolume(volume);
+    function changeVolume(newVolume: number) {
+        if(!audioRef.current) return;
+
+        setPrevVolume(audioRef.current.volume);
+
+        audioRef.current.volume = newVolume;
+
+        setVolume(newVolume);
+
     }
 
-    function changeSlider(e: ChangeEvent<HTMLInputElement>) {
+    function toggleMute() {
+        if(!audioRef.current) return;
+
+        if(volume === 0) {
+            changeVolume(prevVolume);
+        } else {
+            changeVolume(0);
+        }
+    }
+
+    function onChangeVolumeSlider(e: ChangeEvent<HTMLInputElement>) {
         const target = e.target as HTMLInputElement;
         const newVolume = Number(target.value) / 100;
         changeVolume(newVolume);
         //console.log(audio.volume);
     }
 
-    function mute() {
-        setPrevVolume(volume);
-        audio.volume = 0;
-        setVolume(0);
-    }
-
-    function unmute() {
-        if(prevVolume === 0) {
-            setPrevVolume(0.5);
-        }
-        audio.volume = prevVolume;
-        setVolume(prevVolume);
-    }
-
-    function toggleMute() {
-        if(audio.volume === 0) {
-            unmute();
-        } else {
-            mute();
-        }
-    }
-
 
     return(
         <div>
+            <audio id='audio' src={url} preload='none' ref={audioRef} />
             <div className='w-full h-52 lg:h-32 bg-zinc-100/80 dark:bg-black/80'>
             </div>
             <div className='fixed bottom-0 w-full p-2 h-52 lg:h-32  shadow-sm bg-zinc-100/80 dark:bg-black/80 backdrop-blur border-t border-slate-300/40 dark:border-slate-500/30'>
@@ -165,7 +175,7 @@ function Reproductor() {
                         <h4 className={`text-lg font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to to-pink-700`}>{titulo}</h4>
                     </div>
                     <div className='flex flex-col items-center space-y-2'>
-                        <button aria-label='Iniciar o detener la reproducción.' className={`btn border-white/30 hover:border-white/60 rounded-full w-12 h-12 flex justify-center text-white text-center items-center shadow-xl bg-gradient-to-tr from-cyan-400 to-cyan-600`} onClick={toggleAudio} >
+                        <button aria-label='Iniciar o detener la reproducción.' className={`btn border-white/30 hover:border-white/60 rounded-full w-12 h-12 flex justify-center text-white text-center items-center shadow-xl bg-gradient-to-tr from-cyan-400 to-cyan-600`} onClick={onClickPlayButton} >
                             {
                             loading ?
                                 <ImSpinner2 className='h-8 w-8 animate-spin' />
@@ -188,7 +198,7 @@ function Reproductor() {
                             <div className="grow relative flex flex-col h-3 rounded-full bg-white mx-5">
                                 <span className={`absolute top-0 progress shadow-xl w-full h-3 bg-gradient-to-r from-cyan-400 to-cyan-600 `} style={{width: `${volume * 100}%`}} ></span>
                                 <span className="absolute top-0 bg-white h-6 w-6 -ml-3 -mt-1.5 shadow rounded-full border border-slate-800/20" style={{left: `${volume * 100}%` }}></span>
-                                <input aria-label='Volumen.' type="range" min="0" max="100" value={volume * 100} className="absolute cursor-pointer top-0 opacity-0  progress w-full h-5" id="volume" onChange={changeSlider} />
+                                <input aria-label='Volumen.' type="range" min="0" max="100" value={volume * 100} className="absolute cursor-pointer top-0 opacity-0  progress w-full h-5" id="volume" onChange={onChangeVolumeSlider} />
                             </div>
                             <div className='flex-none w-8 h-8 border opacity-0'>
 
