@@ -12,7 +12,7 @@ function RRSS() {
                 </h2>
             </div>
             <div className="flex flex-col space-y-6 lg:space-y-0 lg:space-x-12 lg:flex-row justify-center items-center">
-                <Instagram url="https://www.instagram.com/pcbeach_centro_tecnologico/embed"/>
+                <Instagram url="https://www.instagram.com/pcbeach.cl/embed"/>
                 <Instagram url="https://www.instagram.com/sheriff_security_pichilemu/embed"/>
                 <Instagram url="https://www.instagram.com/pcbeachradio92.3fm/embed"/>
             </div>

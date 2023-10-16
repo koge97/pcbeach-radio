@@ -3,7 +3,8 @@ const items = {
     "Redes Sociales": "#rrss",
     "Nosotros": "#nosotros",
     "Contacto": "#contacto",
-    "Sucursal Virtual Sheriff": "https://sistema.pcbeach.cl/"
+    "Sucursal Virtual Sheriff": "https://sistema.pcbeach.cl/",
+    "Tienda Online": "https://tienda.pcbeach.cl/"
 }
 
 export default function NavBarItems() {
